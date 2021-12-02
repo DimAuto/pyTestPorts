@@ -12,26 +12,22 @@ class USB(QtCore.QObject):
         self.path=None
         self.usb_ports_refresh()
 
-
     def usb_ports_refresh(self):
         c = wmi.WMI()
         self.path=None
         for disk in c.Win32_LogicalDisk():
             if disk.Description== "Removable Disk":
                 self.path=disk.Name+"/newfile.txt"
-        
 
     def built_str(self,n):
         init_str="\x14\x22\x16\x14"
         data=""
         for i in range(0,n):
             data+=init_str
-        #print(len(data.encode("utf-8")))
         return(data)
     
     def change_path(self):
         self.path=None
-
 
     def Wspeed_test(self,path,data):
         d=data
@@ -39,7 +35,6 @@ class USB(QtCore.QObject):
             with open(path,"w") as file:
                 file.write("")
                 start = time.time()
-                #for i in range(0,n):
                 file.write(d)
                 stop=time.time()
                 file.close()
@@ -49,7 +44,3 @@ class USB(QtCore.QObject):
                 self.status=("Drive Not Found")
             else:
                 self.status=("Please add a USB Path")
-
-
-""" if __name__ == "__main__":
-    u=USB() """

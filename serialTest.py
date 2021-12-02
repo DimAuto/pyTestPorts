@@ -7,7 +7,7 @@ from PyQt5 import QtCore
 class Test(QtCore.QObject):
 
     statusChange=QtCore.pyqtSignal(str)
-    
+
     def __init__(self,port1_485=None,port2_485=None,port_232=None,parent=None):
         super(Test,self).__init__(parent)
         self.portList=[]
@@ -23,7 +23,6 @@ class Test(QtCore.QObject):
         for port in plist:
             self.portList.append(port.name)
         return(self.portList)
-
 
     def RS485_Test(self,Speed=57600):
         try:
@@ -52,16 +51,12 @@ class Test(QtCore.QObject):
                 self.status="RS485 PORT FAILED"
         else:
             self.status="RS485 PORT FAILED"
-
         ser1.close
         ser2.close
-
-        #return(self.status)
 
     def commRunning(self):
         self.status="Communication Running"
         self.statusChange.emit(self.status)
-
 
     def RS485_Continuous(self,Speed=57600):
         c=0
@@ -99,9 +94,6 @@ class Test(QtCore.QObject):
         ser2.close
         #return(self.status)
 
-
-
-
     def RS232_Test(self,Speed=9600):
         try:
             ser=serial.Serial(self.Port_232, Speed, timeout=0,bytesize=8, parity=serial.PARITY_NONE, xonxoff=1)
@@ -132,8 +124,6 @@ class Test(QtCore.QObject):
         ser.close
         #return(self.status)
 
-
-
     def RS232_Continuous(self,Speed=9600):
         c=0
         try:
@@ -163,4 +153,3 @@ class Test(QtCore.QObject):
         self.status="Communication Stopped"
         ser.close
         #return(self.status)
-
