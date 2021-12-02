@@ -159,8 +159,6 @@ class Ui_Form(QtCore.QObject):
         self.set_usb_path()
         if self.comPorts!=self.ts.listPorts():
             self.comPorts=self.ts.listPorts()
-        #if self.comboBox.currentIndex()==-1:
-            #ports=self.ts.listPorts()
             self.comboBox.clear()
             self.comboBox_2.clear()
             self.comboBox_3.clear()
@@ -168,7 +166,7 @@ class Ui_Form(QtCore.QObject):
                 self.comboBox.addItem(p)
                 self.comboBox_2.addItem(p)
                 self.comboBox_3.addItem(p)
-        self.timer.start(5000)
+        self.timer.start(3000)
 
     def set_port1_485(self):
         self.ts.Port1_485=self.comboBox.currentText()
