@@ -18,7 +18,6 @@ class Ui_Form(QtCore.QObject):
         screens=app.screens()
         self.sc_dpi=[dpi.logicalDotsPerInch() for dpi in screens]
         self.comPorts=[]
-                
 
     def setupUi(self, Form):
         if self.sc_dpi[0]!=self.sc_dpi[1]:
@@ -123,10 +122,8 @@ class Ui_Form(QtCore.QObject):
         self.line_3.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_3.setObjectName("line_3")
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
-
         self.ts.statusChange.connect(lambda: self.line_refresh())
         self.timer.timeout.connect(self.list_coms)
 
@@ -156,8 +153,6 @@ class Ui_Form(QtCore.QObject):
         self.list_coms()
         self.set_usb_path()
 
-    
-
     def list_coms(self):
         self.usb.usb_ports_refresh()
         self.usb_path=self.usb.path
@@ -174,7 +169,6 @@ class Ui_Form(QtCore.QObject):
                 self.comboBox_2.addItem(p)
                 self.comboBox_3.addItem(p)
         self.timer.start(5000)
-                
 
     def set_port1_485(self):
         self.ts.Port1_485=self.comboBox.currentText()
